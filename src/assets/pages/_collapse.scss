@@ -1,0 +1,19 @@
+  .collapse-content {
+    width: 70vw;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+  
+  .collapse-content.show {
+    width: 70vw;
+    max-height: fit-content; /* Nilai sesuai kebutuhan */
+  }
+
+  .layout-flex-left{
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: center;
+  }
+  

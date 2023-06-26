@@ -1,0 +1,21 @@
+.button-group-flex{
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+    justify-content: end;
+    align-content: center;
+}
+
+.btn{
+    padding: 5px;
+    border-radius: 20px;
+    width: fit-content;
+}
+.btn-batal{
+    background-color: red;
+    color: white;
+}
+.btn-kirim{
+    background-color: green;
+    color: white;
+}

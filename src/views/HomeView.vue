@@ -1,18 +1,73 @@
+
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="container-pesanan">
+    <!-- header -->
+    <HeaderComponent/>
+    <!-- status -->
+    <StatusComponent/>
+    <div style="height:200px; width:100%">
+      <div id="app">
+        <div :id="mapId" class="map"></div>
+        <LRoutingMachine :mapObject="mapObject" :waypoints="waypoints" />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import HeaderComponent from '../components/Header.vue'
+import StatusComponent from '../components/Status.vue'
+import LRoutingMachine from "../components/LRoutingMachine.vue";
+import "leaflet/dist/leaflet.css";
+import L from "leaflet";
+
+const waypoints = [
+  { lat: 38.7436056, lng: -9.2304153 },
+  { lat: 38.7436056, lng: -0.131281 },
+];
 
 export default {
-  name: 'HomeView',
   components: {
-    HelloWorld
-  }
-}
+    LRoutingMachine,
+    HeaderComponent,
+    StatusComponent
+  },
+  data() {
+    return {
+      mapId: "map",
+      mapObject: null,
+      zoom: 6,
+      center: { lat: 38.7436056, lng: -2.2304153 },
+      osmUrl: "http://{s}.tile.osm.org/{z}/{x}/{y}.png",
+      attribution:
+        '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+      waypoints,
+    };
+  },
+  mounted() {
+    this.mapObject = L.map(this.mapId, {
+      zoom: this.zoom,
+      center: this.center,
+    });
+
+    L.tileLayer(this.osmUrl, {
+      attribution: this.attribution,
+    }).addTo(this.mapObject);
+  },
+};
 </script>
+
+<style>
+html,
+body,
+#app {
+  height: 100%;
+  margin: 0;
+}
+
+.map {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+</style>
