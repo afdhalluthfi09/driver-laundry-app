@@ -32,10 +32,6 @@
           <h2>{{ popupTitle }}</h2>
           <form id="form" v-if="currentForm == 'profil'">
             <div class="group-from">
-              <label for="photo">Ambil Photo</label>
-              <input id="photo" type="file" />
-            </div>
-            <div class="group-from">
               <label for="name">nama</label>
               <input
                 type="text"
@@ -49,14 +45,6 @@
                 type="email"
                 id="email"
                 name="email"
-              />
-            </div>
-            <div class="group-from">
-              <label for="age">Umur</label>
-              <input
-                type="text"
-                id="age"
-                name="age"
               />
             </div>
             <div class="group-from">
