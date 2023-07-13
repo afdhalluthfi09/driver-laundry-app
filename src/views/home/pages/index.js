@@ -1,0 +1,1 @@
+export const Home =()=>import('./HomeView.vue');

@@ -1,0 +1,1 @@
+export const Pesanan =()=>import('./PesananView.vue');
