@@ -15,6 +15,31 @@ const actions ={
                 }
             })
         })
+    },
+    authActionLogout:(_,{payload})=>{
+        console.log(payload);
+       return new Promise((resolve,reject)=>{
+            axios.post(`/logout-employes/${payload.tokenId}`).then((response)=>{
+                localStorage.removeItem('data')
+                localStorage.removeItem('token')
+                resolve(response.data)
+            }).catch((error)=>{
+                console.log(error)
+                reject(error);
+            })
+        })
+    },
+    authActionResetPassword:(_,{payload})=>{
+        //change-password-karyawan
+        console.log(payload);
+        return new Promise((resolve,reject)=>{
+            axios.post(`/change-password-karyawan/${payload.tokenId}`,payload).then((response)=>{
+                resolve(response.data)
+            }).catch((error)=>{
+                console.log(error);
+                reject(error)
+            })
+        })
     }
 }
 
