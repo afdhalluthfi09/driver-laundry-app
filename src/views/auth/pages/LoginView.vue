@@ -20,9 +20,6 @@
                     
                 </div>
             </form>
-            <router-link to="/register">
-              <small>Belum Punya Akun ? Daftar Disini</small>
-            </router-link>
             <button class="btn-google">Google</button>
         </div>
   </div>

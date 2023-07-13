@@ -81,7 +81,7 @@
           <form id="form" v-if="currentForm == 'help'">
             <div class="group-from">
               <label for="current_password">Layanan</label>
-              <p>Saat ini Pelayan bisa melalui dari kami dengan cara menggubungi no berikiut : <stron>0811820083</stron></p>
+              <p>Saat ini Pelayan bisa melalui dari kami dengan cara menggubungi no berikiut : <strong>0811820083</strong></p>
             </div>
             <div class="group-from">
               <div class="button-group-flex">
