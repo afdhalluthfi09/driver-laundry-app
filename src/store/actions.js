@@ -21,28 +21,34 @@ const actions ={
             })
         })
     },
-    sendNotification:(_,{token, title, body}) => {
-        const message = {
-          token,
-          notification: {
-            title,
-            body,
-          },
-        };
+    sendNotification:async (_,{token, title, body}) => {
+        
+        try {
+            const message = {
+              token,
+              notification: {
+                title,
+                body,
+              },
+            };
+            await axios.post('https://fcm.googleapis.com/fcm/send', message, {
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer 3a36da7f845d04a7709d288d94550e1f88952616',
+                'Access-Control-Allow-Origin':'*'
+              },
+            })
+            .then(response => {
+              console.log('Notifikasi berhasil dikirim:', response.data);
+            })
+            .catch(error => {
+              console.error('Gagal mengirim notifikasi:', error);
+            });
+            
+        } catch (error) {
+            console.log(error);
+        }
       
-        axios.post('https://fcm.googleapis.com/fcm/send', message, {
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer 3a36da7f845d04a7709d288d94550e1f88952616',
-            'Access-Control-Allow-Origin':'*'
-          },
-        })
-        .then(response => {
-          console.log('Notifikasi berhasil dikirim:', response.data);
-        })
-        .catch(error => {
-          console.error('Gagal mengirim notifikasi:', error);
-        });
       }
 }
 
