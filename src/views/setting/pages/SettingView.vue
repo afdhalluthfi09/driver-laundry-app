@@ -245,8 +245,21 @@ export default {
             text:'Berhasil Merubah data',
             icon:'success'
           }).then(()=>{
-            
             this.closeModal();
+            this.$messaging.send({
+              to: 'cf8LFotjBkwWT4pPKLT1hp:APA91bGAOvL48FvkAxe0KWGHp5GwhzutbCGwI0rIyCo9F0FOnkuPcWpa9KN6IPcKR5UrdSJV7WGqRLI5c5FUv8rhXr0SAS79v8YjbGrcgMjOzE6po065i0c_oGal0J1pE3kGhWnlzsGF',
+              notification: {
+                title: 'Notifikasi dari Vue.js',
+                body: 'Ini adalah pesan notifikasi',
+              },
+            })
+            .then((response) => {
+              console.log('Notifikasi berhasil dikirim ke Laravel:', response);
+            })
+            .catch((error) => {
+              console.log('Terjadi kesalahan saat mengirim notifikasi:', error);
+            });
+
           });
         })
         .catch((error) => {
@@ -257,6 +270,8 @@ export default {
           });
           console.log(error);
         });
+
+        
     },
     limitInput() {
       this.form.no_telp = this.form.no_telp.replace(/\D/g, "");
