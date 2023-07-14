@@ -130,7 +130,7 @@
             <div class="group-from">
               <div class="button-group-flex">
                 <button @click.prevent="closeModal" class="button-cancel-54">Batal</button>
-                <button @clicl.prevent="getWhatsAppLink" class="button-54">Bantuan</button>
+              <button @click.prevent="getWhatsAppLink" class="button-54">Bantuan</button>
               </div>
             </div>
           </form>
@@ -291,7 +291,7 @@ export default {
       console.log(error);
       Swal.fire({
             title: 'Warning',
-            text: `upps cek kemabali password lama`,
+          text: `upps cek kemabali password lama`,
             icon: 'warning',
       }).then(() => {
             this.closeModal()

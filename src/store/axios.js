@@ -1,6 +1,9 @@
 import axiosbase from 'axios';
 
-/* configurasi costume axios agar mengurangi refactory */
+/* configurasi costume axios agar mengurangi refactory 
+    https://api.e-laundry.site/api/v1
+    http://elaundry-api.test/api/v1
+*/
 // step 1: buat variable configure
 const axios =axiosbase.create({  
     baseURL:'https://api.e-laundry.site/api/v1',
