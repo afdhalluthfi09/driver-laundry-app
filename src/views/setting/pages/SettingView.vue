@@ -396,7 +396,6 @@ export default {
                         console.log("toket: ", currentToken);
                         let judul='Judul Notifikasi';
                         let isi ='Judul Notifikasi';
-                        sendNotification(currentToken, 'Judul Notifikasi', 'Isi Notifikasi');
                         this.$store.dispatch('sendNotification',{currentToken,judul,isi})
                   } else {
                     console.log('Tidak ada token pendaftaran yang tersedia.');
