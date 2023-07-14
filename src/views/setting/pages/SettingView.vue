@@ -153,6 +153,7 @@
 
 <script>
 import Swal from 'sweetalert2'
+import { messaging } from '@/firebaseConfig';
 export default {
   name: "SettingViewComponent",
   created() { },
@@ -247,7 +248,7 @@ export default {
           }).then(()=>{
             this.closeModal();
             console.log('hei');
-            this.$messaging.send({
+            messaging.send({
               to: 'cf8LFotjBkwWT4pPKLT1hp:APA91bGAOvL48FvkAxe0KWGHp5GwhzutbCGwI0rIyCo9F0FOnkuPcWpa9KN6IPcKR5UrdSJV7WGqRLI5c5FUv8rhXr0SAS79v8YjbGrcgMjOzE6po065i0c_oGal0J1pE3kGhWnlzsGF',
               notification: {
                 title: 'Notifikasi dari Vue.js',
