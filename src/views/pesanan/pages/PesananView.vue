@@ -101,12 +101,14 @@ export default {
     },
     submitProfile() {
       console.log(this.form);
-      this.$router.push('/')
+      
       Swal.fire({
         title:'Success',
         text:'yey misi penganatran berhasil',
         icon:'success'
       })
+      this.$router.push('/')
+      this.setIsDisabled(false)
     },
     openModal(formName) {
       this.currentForm = formName;
