@@ -4,6 +4,9 @@
 
 <script>
 export default {
+  created(){
+    this.$messaging
+  },
   data(){
     return{}
   }
