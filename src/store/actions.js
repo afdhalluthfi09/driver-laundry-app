@@ -20,7 +20,29 @@ const actions ={
                 reject(error)
             })
         })
-    }
+    },
+    sendNotification:(_,{token, title, body}) => {
+        const message = {
+          token,
+          notification: {
+            title,
+            body,
+          },
+        };
+      
+        axios.post('https://fcm.googleapis.com/fcm/send', message, {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer 3a36da7f845d04a7709d288d94550e1f88952616',
+          },
+        })
+        .then(response => {
+          console.log('Notifikasi berhasil dikirim:', response.data);
+        })
+        .catch(error => {
+          console.error('Gagal mengirim notifikasi:', error);
+        });
+      }
 }
 
 export default actions;
