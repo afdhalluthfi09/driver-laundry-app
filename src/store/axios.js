@@ -6,7 +6,7 @@ import axiosbase from 'axios';
 */
 // step 1: buat variable configure
 const axios =axiosbase.create({  
-    baseURL:'https://fcm.googleapis.com',
+    baseURL:'https://api.e-laundry.site/api/v1',
     headers:{
         'Content-Type':'application/json',
         'Accept':'application/json',
