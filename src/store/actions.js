@@ -35,7 +35,7 @@ const actions ={
               headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer 3a36da7f845d04a7709d288d94550e1f88952616',
-                'Access-Control-Allow-Origin':'*'
+                'Access-Control-Allow-Origin':'https://gleeful-alfajores-345b15.netlify.app'
               },
             })
             .then(response => {
