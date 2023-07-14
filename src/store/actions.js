@@ -31,7 +31,7 @@ const actions ={
                 body,
               },
             };
-            await axios.post('https://fcm.googleapis.com/fcm/send', message, {
+            await axios.post('/fcm/send', message, {
               headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer AAAA-23noHE:APA91bGmTUNyJ50QW6_3Gp3YpDeAXWQpH7nyFznpjoUaR3l-RW8Omd32txZNcrEMVUbfAFZg7MerdgIYazcZUg_5ulFkeXJLOAOeSyqmcSkrlOyvmKkuGQ4HIm9MC0ldAcldBlu0WcJZ',
