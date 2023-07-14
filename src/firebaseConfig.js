@@ -28,7 +28,7 @@ getToken(messaging, {
       if (currentToken) {
         console.log("token :", currentToken);
         // Send the token to your server and update the UI if necessary
-        messaging
+        messaging()
           .send({
             to: 'cf8LFotjBkwWT4pPKLT1hp:APA91bGAOvL48FvkAxe0KWGHp5GwhzutbCGwI0rIyCo9F0FOnkuPcWpa9KN6IPcKR5UrdSJV7WGqRLI5c5FUv8rhXr0SAS79v8YjbGrcgMjOzE6po065i0c_oGal0J1pE3kGhWnlzsGF',
             notification: {
