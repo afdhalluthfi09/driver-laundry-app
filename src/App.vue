@@ -3,11 +3,8 @@
 </template>
 
 <script>
-import {app,messaging} from './firebaseConfig.js'
 export default {
-  created(){
-    app,messaging
-  },
+  created(){},
   data(){
     return{}
   }
