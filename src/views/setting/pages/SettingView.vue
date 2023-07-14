@@ -154,6 +154,7 @@
 <script>
 import Swal from 'sweetalert2'
 import { messaging } from '@/firebaseConfig';
+import { getMessaging, getToken } from 'firebase/messaging';
 export default {
   name: "SettingViewComponent",
   created() { },
@@ -248,18 +249,30 @@ export default {
           }).then(()=>{
             this.closeModal();
             console.log('hei');
-            messaging.send({
-              to: 'cf8LFotjBkwWT4pPKLT1hp:APA91bGAOvL48FvkAxe0KWGHp5GwhzutbCGwI0rIyCo9F0FOnkuPcWpa9KN6IPcKR5UrdSJV7WGqRLI5c5FUv8rhXr0SAS79v8YjbGrcgMjOzE6po065i0c_oGal0J1pE3kGhWnlzsGF',
-              notification: {
-                title: 'Notifikasi dari Vue.js',
-                body: 'Ini adalah pesan notifikasi',
-              },
-            })
-            .then((response) => {
-              console.log('Notifikasi berhasil dikirim ke Laravel:', response);
-            })
-            .catch((error) => {
-              console.log('Terjadi kesalahan saat mengirim notifikasi:', error);
+            const messagingInstance = getMessaging(messaging.app);
+            getToken(messagingInstance, {
+              vapidKey: 'BJ3K0Ed4igq-C44zKfCdvtnsIFylEf4rlVNQIUOVrMJtXRy9R3Zip7vXXUXkwuh3pxqRp8yxMAaW_DK-NVKBfl4',
+            }).then((currentToken) => {
+              if (currentToken) {
+                messagingInstance.send({
+                    to: 'cf8LFotjBkwWT4pPKLT1hp:APA91bGAOvL48FvkAxe0KWGHp5GwhzutbCGwI0rIyCo9F0FOnkuPcWpa9KN6IPcKR5UrdSJV7WGqRLI5c5FUv8rhXr0SAS79v8YjbGrcgMjOzE6po065i0c_oGal0J1pE3kGhWnlzsGF',
+                    notification: {
+                      title: 'Notifikasi dari Vue.js',
+                      body: 'Ini adalah pesan notifikasi',
+                    },
+                  })
+                  .then((response) => {
+                    console.log('Notifikasi berhasil dikirim ke Laravel:', response);
+                  })
+                  .catch((error) => {
+                    console.log('Terjadi kesalahan saat mengirim notifikasi:', error);
+                  });
+
+              }else {
+                console.log('Tidak ada token pendaftaran yang tersedia.');
+              }
+            }) .catch((err) => {
+              console.log('Terjadi kesalahan saat mendapatkan token:', err);
             });
 
           });
