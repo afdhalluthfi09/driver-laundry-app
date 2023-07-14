@@ -1,7 +1,7 @@
 <template>
     <div class="main">
             <div class="main-title">
-                <p>Layanan Driver</p>
+                <p>Layanan Driver</p> <button @click.prevent="sendNotiv">klik kirim</button>
             </div>
             <div class="contain-main">
                 <div @click="openModal('profil')" id="openModalBtn" class="square-icon">
@@ -249,33 +249,6 @@ export default {
           }).then(()=>{
             this.closeModal();
             console.log('hei');
-            getToken(messaging, {
-                vapidKey: 'BJ3K0Ed4igq-C44zKfCdvtnsIFylEf4rlVNQIUOVrMJtXRy9R3Zip7vXXUXkwuh3pxqRp8yxMAaW_DK-NVKBfl4',
-              })
-                .then((currentToken) => {
-                  if (currentToken) {
-                    messaging
-                      .send({
-                        to: 'cf8LFotjBkwWT4pPKLT1hp:APA91bGAOvL48FvkAxe0KWGHp5GwhzutbCGwI0rIyCo9F0FOnkuPcWpa9KN6IPcKR5UrdSJV7WGqRLI5c5FUv8rhXr0SAS79v8YjbGrcgMjOzE6po065i0c_oGal0J1pE3kGhWnlzsGF',
-                        notification: {
-                          title: 'Notifikasi dari Vue.js',
-                          body: 'Ini adalah pesan notifikasi',
-                        },
-                      })
-                      .then((response) => {
-                        console.log('Notifikasi berhasil dikirim ke Laravel:', response);
-                      })
-                      .catch((error) => {
-                        console.log('Terjadi kesalahan saat mengirim notifikasi:', error);
-                      });
-                  } else {
-                    console.log('Tidak ada token pendaftaran yang tersedia.');
-                  }
-                })
-                .catch((err) => {
-                  console.log('Terjadi kesalahan saat mendapatkan token:', err);
-                });
-
           });
         })
         .catch((error) => {
@@ -413,6 +386,34 @@ export default {
       if(this.reset.password === this.reset.new_password){
         this.isDisabled = false;
       }
+    },
+    sendNotiv(){
+      getToken(messaging, {
+                vapidKey: 'BJ3K0Ed4igq-C44zKfCdvtnsIFylEf4rlVNQIUOVrMJtXRy9R3Zip7vXXUXkwuh3pxqRp8yxMAaW_DK-NVKBfl4',
+              })
+                .then((currentToken) => {
+                  if (currentToken) {
+                    messaging
+                      .send({
+                        to: 'cf8LFotjBkwWT4pPKLT1hp:APA91bGAOvL48FvkAxe0KWGHp5GwhzutbCGwI0rIyCo9F0FOnkuPcWpa9KN6IPcKR5UrdSJV7WGqRLI5c5FUv8rhXr0SAS79v8YjbGrcgMjOzE6po065i0c_oGal0J1pE3kGhWnlzsGF',
+                        notification: {
+                          title: 'Notifikasi dari Vue.js',
+                          body: 'Ini adalah pesan notifikasi',
+                        },
+                      })
+                      .then((response) => {
+                        console.log('Notifikasi berhasil dikirim ke Laravel:', response);
+                      })
+                      .catch((error) => {
+                        console.log('Terjadi kesalahan saat mengirim notifikasi:', error);
+                      });
+                  } else {
+                    console.log('Tidak ada token pendaftaran yang tersedia.');
+                  }
+                })
+                .catch((err) => {
+                  console.log('Terjadi kesalahan saat mendapatkan token:', err);
+                });
     }
   },
   computed:{
