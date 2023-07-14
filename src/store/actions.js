@@ -34,7 +34,7 @@ const actions ={
             await axios.post('https://fcm.googleapis.com/fcm/send', message, {
               headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer AAAA_EECkFA:APA91bHqutDzCX9Su3lDerOQzlOtWyXTErmdf3zgpuqZggenn6kv1rViE-frluxxzepgpkRegBvHhabBiZrDJerV0zrUMwSL-gJmSpaHs7hEyDTWKS1WCoXI2LimUHOMPsxVpdzfSRGv',
+                'Authorization': 'Bearer AAAA-23noHE:APA91bGmTUNyJ50QW6_3Gp3YpDeAXWQpH7nyFznpjoUaR3l-RW8Omd32txZNcrEMVUbfAFZg7MerdgIYazcZUg_5ulFkeXJLOAOeSyqmcSkrlOyvmKkuGQ4HIm9MC0ldAcldBlu0WcJZ',
                 'Access-Control-Allow-Origin':'https://gleeful-alfajores-345b15.netlify.app'
               },
             })
