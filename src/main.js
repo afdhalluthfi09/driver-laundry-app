@@ -1,11 +1,16 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import './registerServiceWorker'
+import messaging  from './firebaseConfig'
 import router from './router'
 import store from './store'
 
 
-createApp(App).use(store).use(router).mount('#app')
+createApp(App)
+          .use(store)
+          .use(router)
+          .use(messaging)
+          .mount('#app')
 window.addEventListener('popstate', () => {
     const confirmationMessage = 'Apakah Anda yakin ingin keluar?';
     if (confirm(confirmationMessage)) {

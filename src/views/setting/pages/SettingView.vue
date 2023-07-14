@@ -233,7 +233,7 @@ export default {
           payload: {
             tokenId: this.getUser.tokenId,
             name: this.form.name,
-            email: this.form.email,
+            email: (this.form.email === this.getUser.email) ? null : this.form.email,
             no_telp: this.form.no_telp,
             age: this.form.age,
             address: this.form.address,
@@ -252,7 +252,7 @@ export default {
         .catch((error) => {
           Swal.fire({
             title:'Warning',
-            text:'Ups Terjadi Kesalahan Penginputan',
+            text:`Ups ${error.response.data.message}`,
             icon:'error'
           });
           console.log(error);

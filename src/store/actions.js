@@ -12,6 +12,7 @@ const actions ={
         })
     },
     updateActionProfile:(_,{payload})=>{
+        console.log(payload);
         return new Promise((resolve,reject)=>{
             axios.patch(`/employee/${payload.tokenId}`,payload).then((respone)=>{
                 resolve(respone.data);
