@@ -22,25 +22,72 @@
         </div>
       </div>
     </div>
+    <transition name="modal">
+      <div v-if="isModalOpen" id="myModal" class="modal">
+        <div class="modal-content">
+          <h2>{{ popupTitle }}</h2>
+          <form enctype="multipart/form-data" @submit.prevent="submitProfile" id="form" v-if="currentForm == 'profil'">
+            <div class="group-from">
+              <label for="name">nama</label>
+              <input type="file" id="foto" @change.prevent="handleFileChange" name="foto"  required />
+            </div>
+            <div class="group-from">
+              <label for="notelp">Status</label>
+              <select name="status" @change.prevent="handleSelectChange" id="status">
+                <option value="">Pilih Status</option>
+                <option value="lunas">Lunas</option>
+              </select>
+            </div>
+            <div class="group-from">
+              <div class="button-group-flex">
+                <button type="submit" class="button-54">Ubah</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </transition>
 </template>
 
 <script>
+import {mapMutations} from 'vuex'
+import Swal from 'sweetalert2'
 export default {
   name: "PesananViewComponent",
   created() {},
   data() {
     return {
       items: [
-        { title: 'Ambil Laundry', description: 'Jl. Kaliurang No.km, RW.8, gentan, Sinduharjo, Kec. Ngaglik, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55581',lat: 123.456, lng: 789.012, showDetail: false },
-        { title: 'Ambil Laundry', description: 'Description 3', showDetail: false,lat: 123.456, lng: 789.012 },
-        { title: 'Jemput Laundry', description: 'Description 4', showDetail: false,lat: 789.012, lng: 345.678 },
+        { title: 'Ambil Laundry', 
+          description: 'Jl. Kaliurang No.km, RW.8, gentan, Sinduharjo, Kec. Ngaglik, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55581',
+          lat: 123.456, 
+          lng: 789.012, 
+          showDetail: false},
+        { title: 'Ambil Laundry', 
+          description: 'Jl. Kaliurang No.km, RW.8, gentan, Sinduharjo, Kec. Ngaglik, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55581', 
+          showDetail: false,
+          lat: 123.456, lng: 789.012},
+        { title: 'Jemput Laundry', 
+          description: 'Jl. Kaliurang No.km, RW.8, gentan, Sinduharjo, Kec. Ngaglik, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55581', 
+          showDetail: false,
+          lat: 789.012, 
+          lng: 345.678},
       ],
+      isModalOpen: false,
+      currentForm: '',
+      popupTitle: '',
+      form: {
+        status: null,
+        foto:null
+        
+      },
     };
   },
   components:{
   },
   props: {},
   methods: {
+    ...mapMutations(["setIsDisabled"]),
     toggleDetail(index) {
       this.items[index].showDetail = !this.items[index].showDetail;
     },
@@ -50,6 +97,32 @@ export default {
     openGoogleMaps(lat, lng) {
       const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
       window.open(googleMapsUrl, '_blank');
+      this.openModal('profil')
+    },
+    submitProfile() {
+      console.log(this.form);
+      this.$router.push('/')
+      Swal.fire({
+        title:'Success',
+        text:'yey misi penganatran berhasil',
+        icon:'success'
+      })
+    },
+    openModal(formName) {
+      this.currentForm = formName;
+      this.setIsDisabled(true)
+      this.isModalOpen = true;
+      if(this.currentForm == 'profil'){
+        this.popupTitle = 'profil';
+      }
+    },
+    handleFileChange(event) {
+      this.form.photo = event.target.files[0];
+      console.log('Selected File:', this.form.photo);
+    },
+    handleSelectChange(event) {
+      this.form.status = event.target.value;
+      console.log('Selected Option:', this.form.status);
     },
   },
 };

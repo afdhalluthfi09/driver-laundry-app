@@ -250,7 +250,11 @@ export default {
           });
         })
         .catch((error) => {
-          Swal("terjadi kesalahan", "mohon maaf terjadi kesalahan", "failed");
+          Swal.fire({
+            title:'Warning',
+            text:'Ups Terjadi Kesalahan Penginputan',
+            icon:'error'
+          });
           console.log(error);
         });
     },

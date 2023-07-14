@@ -2,19 +2,19 @@
   <!-- navbar -->
   <div class="navbar">
     <div>
-      <router-link to="/">
+      <router-link  :to="getIsDisabled ? '#' : '/'">
         <img src="../assets/gambar/icon/iconhome.svg" alt="iconhome" />
         <p>Home</p>
       </router-link>
     </div>
     <div>
-      <router-link to="/pesanan">
+      <router-link  :to="getIsDisabled ? '#' : '/pesanan'">
         <img src="../assets/gambar/icon/iconcuci.svg" alt="iconcuci" />
         <p>Pesanan</p>
       </router-link>
     </div>
     <div>
-      <router-link to="/setting">
+      <router-link   :to="getIsDisabled ? '#' : '/setting'">
         <img src="../assets/gambar/icon/iconsetting.svg" alt="iconsetting" />
         <p>Akun</p>
       </router-link>
@@ -23,6 +23,7 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
 export default {
   name: "NavbarComponent",
   created() {},
@@ -31,6 +32,12 @@ export default {
   },
   props: {},
   methods: {},
+  computed:{
+    ...mapGetters(["getIsDisabled"])
+  },
+  mounted() {
+    this.getIsDisabled
+  },
 };
 </script>
 
