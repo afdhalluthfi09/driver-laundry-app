@@ -8,6 +8,7 @@ import state from './state';
 // import module
 import laundry from './laundry/index';
 import auth from './auth/index';
+import notif from './notif/index';
 export default new Vuex.Store({
     namespaced:true,
     state,
@@ -16,6 +17,7 @@ export default new Vuex.Store({
     mutations,
     modules:{
         laundry:laundry,
-        auth:auth
+        auth:auth,
+        notif:notif
     }
 })

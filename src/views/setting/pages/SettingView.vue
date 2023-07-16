@@ -1,7 +1,7 @@
 <template>
     <div class="main">
             <div class="main-title">
-                <p>Layanan Driver</p> <button @click.prevent="sendNotiv">klik kirim</button>
+                <p>Layanan Driver</p>
             </div>
             <div class="contain-main">
                 <div @click="openModal('profil')" id="openModalBtn" class="square-icon">
@@ -153,8 +153,6 @@
 
 <script>
 import Swal from 'sweetalert2'
-import { messaging } from '@/firebaseConfig';
-import { getToken } from 'firebase/messaging';
 export default {
   name: "SettingViewComponent",
   created() { },
@@ -386,24 +384,6 @@ export default {
       if(this.reset.password === this.reset.new_password){
         this.isDisabled = false;
       }
-    },
-    sendNotiv(){
-      getToken(messaging, {
-                vapidKey: 'BJ3K0Ed4igq-C44zKfCdvtnsIFylEf4rlVNQIUOVrMJtXRy9R3Zip7vXXUXkwuh3pxqRp8yxMAaW_DK-NVKBfl4',
-              })
-                .then((currentToken) => {
-                  if (currentToken) {
-                        console.log("toket: ", currentToken);
-                        let judul='Judul Notifikasi';
-                        let isi ='Judul Notifikasi';
-                        this.$store.dispatch('sendNotification',{currentToken,judul,isi})
-                  } else {
-                    console.log('Tidak ada token pendaftaran yang tersedia.');
-                  }
-                })
-                .catch((err) => {
-                  console.log('Terjadi kesalahan saat mendapatkan token:', err);
-                });
     }
   },
   computed:{

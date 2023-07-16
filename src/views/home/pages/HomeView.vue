@@ -12,13 +12,17 @@
 import LRoutingMachine from "../../../components/LRoutingMachine.vue";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
-
+import {messaging} from '../../../firebaseConfig'
 const waypoints = [
   { lat: 38.7436056, lng: -9.2304153 },
   { lat: 38.7436056, lng: -0.131281 },
 ];
 
 export default {
+
+  created(){
+    messaging
+  },
   components: {
     LRoutingMachine,
   },

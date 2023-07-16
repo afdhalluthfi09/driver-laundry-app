@@ -3,15 +3,15 @@
       <div class="message-title">Pesan Aktif</div>
       <div class="contain-message">
         <div class="list-container">
-          <div class="list-animation">
+          <div v-if="notif" class="list-animation">
             <ul class="list">
-              <li v-for="(item, index) in items" :key="index" :class="{ 'show-detail': item.showDetail }" class="list-item">
-                <div class="list-item-header" @click="toggleDetail(index)">
-                  {{ item.title }}
+              <li v-for="(item, index) in notif" :key="index" :class="{ 'show-detail': item.data.showDetail }" class="list-item">
+                <div class="list-item-header" @click="toggleDetail(item)">
+                  {{ item.data.title }}
                 </div>
-                <div class="list-item-body" v-show="item.showDetail">
-                  {{ item.description }}
-                  <div @click.prevent="openGoogleMaps(item.lat, item.lng)"  class="displex">
+                <div class="list-item-body" v-show="item.data.showDetail">
+                  {{ item.data.message }}
+                  <div @click.prevent="openGoogleMaps(item.data.location)"  class="displex">
                     <button class="button-54">Go Lokasi</button>
                   </div>
                 </div>
@@ -19,6 +19,7 @@
               </li>
             </ul>
           </div>
+          <div v-else>Belum Adad Task</div>
         </div>
       </div>
     </div>
@@ -63,15 +64,6 @@ export default {
           lat: 123.456, 
           lng: 789.012, 
           showDetail: false},
-        { title: 'Ambil Laundry', 
-          description: 'Jl. Kaliurang No.km, RW.8, gentan, Sinduharjo, Kec. Ngaglik, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55581', 
-          showDetail: false,
-          lat: 123.456, lng: 789.012},
-        { title: 'Jemput Laundry', 
-          description: 'Jl. Kaliurang No.km, RW.8, gentan, Sinduharjo, Kec. Ngaglik, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55581', 
-          showDetail: false,
-          lat: 789.012, 
-          lng: 345.678},
       ],
       isModalOpen: false,
       currentForm: '',
@@ -81,6 +73,7 @@ export default {
         foto:null
         
       },
+      notif:null
     };
   },
   components:{
@@ -88,13 +81,16 @@ export default {
   props: {},
   methods: {
     ...mapMutations(["setIsDisabled"]),
-    toggleDetail(index) {
-      this.items[index].showDetail = !this.items[index].showDetail;
+    toggleDetail(item) {
+      item.data.showDetail = !item.data.showDetail;
     },
     removeItem(index) {
       this.items.splice(index, 1);
     },
-    openGoogleMaps(lat, lng) {
+    openGoogleMaps(locations) {
+      let location =JSON.parse(locations);
+      let lat = location[0]
+      let lng =location[1]
       const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
       window.open(googleMapsUrl, '_blank');
       this.openModal('profil')
@@ -127,6 +123,15 @@ export default {
       console.log('Selected Option:', this.form.status);
     },
   },
+  mounted(){
+    let data =JSON.parse(localStorage.getItem('data'));
+    this.$store.dispatch('notif/notifUnread',{payload:{tokenId:data.tokenId}}).then((response)=>{
+        console.log(response.data);
+        this.notif =response.data
+    }).catch((error)=>{
+        console.log(error);
+    })
+  }
 };
 </script>
 
